@@ -53,7 +53,7 @@ static const syscall_handler_t sys_table[] =
     [SYS_unlink]   = (syscall_handler_t)sys_unlink,
 };
 
-#ifdef SYSCALL_MODE
+
 /**
  * 处理系统调用, 该函数由任务门调用
  */
@@ -77,8 +77,6 @@ void do_handler_syscall(syscall_frame_t * frame)
     log_printf("task: %s, Unknown syscall: %d", task->name,  frame->func_id);
     frame->eax = -1;  // 设置系统调用的返回值，由eax传递
 }
-
-#else
 
 /**
  * 处理系统调用, 该函数由中断/异常门调用
@@ -106,4 +104,3 @@ void do_handler_syscall_irq(exception_frame_t * frame)
     log_printf("task: %s, Unknown syscall: %d", task->name, func_id);
     frame->eax = -1;  // 设置系统调用的返回值，由eax传递
 }
-#endif

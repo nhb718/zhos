@@ -79,6 +79,7 @@ typedef struct _task_t
  * uint32_t esp  进程栈顶指针
  */
 int task_init(task_t * task, const char * name, int flag, uint32_t entry, uint32_t esp);
+
 /**
  * 任务切换函数
  * 参考文档: ../documents/325384-sdm-vol-3abcd.pdf  Chapter 7.3 Task Switching

@@ -277,7 +277,7 @@ static void create_kernel_table(void)
 uint32_t memory_create_uvm(void)
 {
     // 分配一页物理内存, 用于存放页表(一页内存4KB可保存1024个页表项), 并将分配的物理首地址赋给 page_dir 页目录项
-    pde_t *   = (pde_t *)addr_alloc_page(&paddr_alloc, 1);
+    pde_t * page_dir = (pde_t *)addr_alloc_page(&paddr_alloc, 1);
     if (page_dir == 0)
     {
         return 0;

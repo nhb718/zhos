@@ -31,7 +31,7 @@ static inline int sys_call(syscall_args_t * args)
 {
     int ret;
 
-    #ifdef SYSCALL_MODE
+    #if 0
     // 1. 执行 "call + 系统调用门选择因子segment selector + 偏移量offset=0" 的指令
     const unsigned long sys_gate_addr[] = {0, SELECTOR_SYSCALL | 0};  // 偏移量offset=0; 使用特权级GATE_RPL0
 
