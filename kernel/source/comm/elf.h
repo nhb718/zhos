@@ -34,7 +34,7 @@ typedef struct
     Elf32_Half e_machine;    /* Architecture */
     Elf32_Word e_version;    /* Object file version */
     Elf32_Addr e_entry;      // 保存elf程序的入口地址, Entry point virtual address
-    Elf32_Off  e_phoff;      // 段偏移量, 用以索引段的起始地址, Program header table file offset
+    Elf32_Off  e_phoff;      // 段偏移量, 用以索引某一段的起始地址, Program header table file offset
     Elf32_Off  e_shoff;      /* Section header table file offset */
     Elf32_Word e_flags;      /* Processor-specific flags */
     Elf32_Half e_ehsize;     /* ELF header size in bytes */

@@ -46,6 +46,8 @@ void mutex_lock(mutex_t * mutex)
         // 该锁已被其它任务占用, 则将当前进程扔进等待队列中
         task_set_block(curr);
         list_insert_last(&mutex->wait_list, &curr->wait_node);
+
+        // 当前任务睡眠, 需启动任务调度, 重新选择合适的进程运行
         task_dispatch();
     }
 
@@ -69,7 +71,7 @@ void mutex_unlock(mutex_t * mutex)
             // 减到0，释放锁
             mutex->owner = (task_t *)0;
 
-            // 如果等待队列中有任务等待，则立即唤醒并占用锁
+            // 如果等待队列中有任务等待, 则立即唤醒并占用锁
             if (list_count(&mutex->wait_list))
             {
                 list_node_t * task_node = list_remove_first(&mutex->wait_list);

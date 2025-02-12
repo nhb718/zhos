@@ -50,7 +50,7 @@ static int tss_init(task_t * task, int flag, uint32_t entry, uint32_t esp)
     // tss段初始化
     kernel_memset(&task->tss, 0, sizeof(tss_t));
 
-    // 分配1页物理地址作为内核栈, 专门留给异常/中断/系统调用发生时嵌入到内核态时用到的栈
+    // 分配一页4KB物理内存作为内核栈, 专门留给异常/中断/系统调用发生时嵌入到内核态时用到的栈
     uint32_t kernel_stack = memory_alloc_page();
     if (kernel_stack == 0)
     {
@@ -239,7 +239,7 @@ void task_first_init(void)
     memory_alloc_page_for(first_start_func,  alloc_size, PTE_P | PTE_W | PTE_U);
     kernel_memcpy((void *)first_start_func, (void *)&s_first_task, copy_size);
 
-    // 启动进程
+    // 将first进程加入进程管理的 ready_list 就绪队列中
     task_start(&task_manager.first_task);
 
     // 写TR(TSS Register)寄存器, 指示当前运行的第一个任务
@@ -298,6 +298,7 @@ void task_manager_init(void)
                 (uint32_t)idle_task_entry,
                 0);     // 运行于内核模式，无需指定特权级3的栈
     task_manager.curr_task = (task_t *)0; // 初始化时暂无任何进程在运行
+    // 将idle进程加入进程管理的 ready_list 就绪队列中
     task_start(&task_manager.idle_task);
 }
 
@@ -678,7 +679,9 @@ int sys_fork(void)
         goto fork_failed;
     }
 
-    // 创建成功, 返回子进程的pid
+    // 注意! 此前都是新进程的初始化过程中, 若期间定时中断到来时会打断该过程, 因此新创建的进程在初始化过程中不应加入就绪队列
+
+    // 至此, 一个新的进程才算创建成功, 此时就可以将它加入进程管理的就绪队列 ready_list, 并返回子进程的pid
     task_start(child_task);
     // 父进程返回子进程的pid
     return child_task->pid;
@@ -719,7 +722,7 @@ static int load_phdr(int file, Elf32_Phdr * phdr, uint32_t page_dir)
     // 简单起见，设置成可写模式，也许可考虑根据phdr->flags设置成只读
     // 因为没有找到该值的详细定义，所以没有加上
     uint32_t vaddr = phdr->p_vaddr;
-    uint32_t size = phdr->p_filesz;
+    uint32_t size  = phdr->p_filesz;
     while (size > 0)
     {
         int curr_size = (size > MEM_PAGE_SIZE) ? MEM_PAGE_SIZE : size;

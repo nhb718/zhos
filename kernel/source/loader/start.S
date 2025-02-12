@@ -18,7 +18,7 @@ _start:
     mov $_start, %esp // mov $0x8000, %esp
 
     // 你可能会想, 在一级引导程序 boot中直接跳到 loader_entry, 但这样需要先知道 loader_entry 在哪儿
-    // 然后boot 暂时没有这个能力, 因此loader开头处用汇编实现, 以便 _start 处于整个bin文件开头, 这样boot直接跳到开头就可以
+    // 然而boot 暂时没有这个能力, 因此loader开头处用汇编实现, 以便 _start 处于整个bin文件开头, 这样boot直接跳到开头就可以
     // loader_entry 在 loader_16.c 中定义, 负责完成从16位实模式切换到32位保护模式
     jmp loader_entry
 

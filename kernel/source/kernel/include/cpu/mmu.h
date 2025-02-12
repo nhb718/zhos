@@ -106,7 +106,7 @@ static inline uint32_t pte_paddr(pte_t * pte)
  */
 static inline uint32_t get_pte_perm(pte_t * pte)
 {
-    return (pte->v & 0x1FF);
+    return (pte->v & 0x3FF);
 }
 
 /**

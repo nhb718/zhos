@@ -174,7 +174,7 @@ static uint32_t reload_elf_file(uint8_t * file_buffer)
 
         /**
          * 全部使用物理地址，此时分页机制还未打开
-         * 通过elf header中的 p_offset 和 p_filesz 索引到ELF文件中的对应 Segment
+         * 通过elf各个段属性中的 p_offset 和 p_filesz 索引到ELF文件中的对应 Segment
          * 再将数据拷贝到 p_addr 的内存地址处, 大小为 p_memsz
          */
         uint8_t * src = file_buffer + phdr->p_offset;
@@ -189,7 +189,7 @@ static uint32_t reload_elf_file(uint8_t * file_buffer)
          * 对于.text和.rodata段, 以上拷贝没有问题; 但对于.data和.bss段, 除了拷贝p_filesz长度的内存
          * 还需将后面的.bss内存区域清0(从p_filesz ~ p_memsz之间的区域), 即memsz和filesz不同时，后续要填0
          */
-        dest= (uint8_t *)phdr->p_paddr + phdr->p_filesz;
+        dest = (uint8_t *)phdr->p_paddr + phdr->p_filesz;
         for (int j = 0; j < phdr->p_memsz - phdr->p_filesz; j++)
         {
             *dest++ = 0;
@@ -263,11 +263,11 @@ void load_kernel(void)
     // 这里的内核image没有进行压缩, 因此无需解压的操作
 
     /**
-     * 解析ELF文件格式, 把内核image中的指令段、数据段、BSS段等, 根据ELF中信息和要求放入1MB内存处, 最后返回指令段的入口地址
+     * 解析ELF文件格式, 把内核image中的指令段、数据段、BSS段等, 根据ELF中信息和要求放入相应的物理内存处, 最后返回指令段的入口地址
      *
      * 将ELF文件从磁盘上 "临时" 先读到 SYS_KERNEL_LOAD_ADDR =1MB内存处, 再进行解析
      * 内核image文件加载到内存后需解析ELF文件内容, 从中获取内核的信息
-     * 然后再将ELF的各个段拷贝到elf中指定的内存中, 起始地址为 kernel_entry(=0x10000=64KB)
+     * 然后再将ELF的各个段拷贝到ELF中phy_addr指定的内存中, 起始地址为 kernel_entry(=0x10000=64KB)
      */
     uint32_t kernel_entry = reload_elf_file((uint8_t *)SYS_KERNEL_LOAD_ADDR);
     if (kernel_entry == 0) // ELF文件解析失败

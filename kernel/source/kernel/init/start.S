@@ -18,18 +18,22 @@
 # 此处需将boot_info参数传递给call kernel_init, 即需要先将boot_info参数压栈, 再调用kernel_init
 _start_kernel:
     // 汇编指令语法格式: mov source, dest
-    # 第一种方法
+    # 第一种方法, 传统获取入参方式
+    # 1) 将老的栈底ebp压栈
+    # 2) 将当前esp赋值给ebp作为新的栈底
+    # 3) 取调用者传入的参数, 压栈顺序: 入参(从后往前压栈), 返回者(调用点下一个指令地址), 刚压栈的老ebp
+    # 因此需要将ebp+8后赋值给eax
     # push %ebp           // 保存ebp, 入栈
     # mov %esp, %ebp      // 将esp赋值给ebp
     # mov 0x8(%ebp), %eax // 取出boot_info参数(ebp后面有返回值+参数, 因此ebp需要+8), 并保存到eax寄存器中
     # push %eax           // 保存eax, 入栈
 
-    # 第二种方法
+    # 第二种方法, 因kernel拉起来后不会再返回, 所以此处可省略ebp压栈, 返回地址压栈, 直接通过esp+4后赋值给eax
     # mov 4(%esp), %eax   // 取出boot_info参数(esp后面有返回值, 因此esp需要+4), 并保存到eax寄存器中
     # push %eax           // 保存eax, 入栈
 
-    # 第三种方法
-    push 4(%esp) // 直接将esp+4指向的boot_info参数入栈, 因为拉起内核后不会再返回了, 无需保存ebp栈底指针
+    # 第三种方法, 直接将esp+4指向的boot_info参数入栈, 因为拉起内核后不会再返回了, 无需保存ebp栈底指针
+    push 4(%esp)
 
     # kernel_init(boot_info), 作为内核初始化函数入口, 该函数在 init.c 中实现
     // 调用void kernel(boot_info_t * boot_info)运行内核, 同时传入boot_info硬件参数信息
@@ -77,7 +81,7 @@ exception_handler_\name:
     // 压入异常向量号, 即中断号
     push $\num
 
-    // 一、保护 CPU 寄存器，即中断发生时的程序运行的上下文
+    // 一、保存 CPU 寄存器，即中断发生时的程序运行的上下文
     # 需保存中断上下文, 有以下三种类型
     # 1. 硬件会自动压栈的寄存器: eflags, cs, eip, error code错误码(可选)
     # 2. X86 pushal指令会自动压栈通用寄存器: eax, ecx, edx, ebx, esp, ebp, esi, edi
@@ -155,7 +159,7 @@ exception_handler syscall_irq, 0x80, 0 # 系统调用中断
 .global simple_switch
 simple_switch:
     movl 4(%esp), %eax   // 取传入参数from->stack, 保存from->stack到 eax 寄存器
-    movl 8(%esp), %edx   // 取传入to->stack, 保存to->stack到 edx 寄存器
+    movl 8(%esp), %edx   // 取传入参数to->stack, 保存to->stack到 edx 寄存器
 
     // 保存前一任务的状态寄存器
     push %ebp
