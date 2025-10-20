@@ -1,0 +1,12 @@
+source/kernel/CMakeFiles/kernel.dir/dev/time.c.obj: \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/dev/time.c \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include/dev/time.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/comm/types.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include/cpu/irq.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/comm/cpu_instr.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/comm/types.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include/os_cfg.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include/core/task.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include/cpu/cpu.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include/tools/list.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include/fs/file.h

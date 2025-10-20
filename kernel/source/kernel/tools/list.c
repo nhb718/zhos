@@ -112,8 +112,8 @@ list_node_t * list_remove_first(list_t * list)
     else
     {
         // 非最后一结点，将后继的前驱清0
-        //remove_node->next->pre = (list_node_t *)0;
-        list->first->pre = (list_node_t *)0;
+        remove_node->next->pre = (list_node_t *)0;
+        //list->first->pre = (list_node_t *)0;
     }
 
     // 调整待删除节点remove_node自己, 将pre和next都置为0

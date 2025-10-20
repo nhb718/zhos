@@ -17,16 +17,16 @@ boot_info_t boot_info; // 启动参数信息, boot在加载loader程序时传入
 // GDT表, 只在16位实模式下使用，后面切换到32位保护模式后会替换成自己的
 static uint16_t gdt_table[][4] =
 {
-    {0, 0, 0, 0},
-    {0xFFFF, 0x0000, 0x9A00, 0x00CF},
-    {0xFFFF, 0x0000, 0x9200, 0x00CF},
+    {0, 0, 0, 0},  // GDT表第一项保留
+    {0xFFFF, 0x0000, 0x9A00, 0x00CF}, // 内核数据段, 0x9A00 数据段起始地址
+    {0xFFFF, 0x0000, 0x9200, 0x00CF}, // 内核代码段, 0x9200 代码段起始地址
 };
-
 
 /**
  * 内联汇编, 即在C语言中嵌入汇编程序
  * 内联汇编基本格式
- * asm(汇编语句
+ * asm(汇编语句, 可由1条或多条汇编指令组成, 用一字符串表示. 
+ *             当多条汇编指令时不同指令间 用';'或"\n\t"分隔, 当字符串太长时可拆分成多行多个字符串
  * : 输出操作数 (可选)
  * : 输入操作数 (可选)
  * : 被破坏的寄存器列表 (可选)
@@ -51,7 +51,7 @@ static uint16_t gdt_table[][4] =
 /**
  * BIOS下显示字符串
  */
-static void show_msg(const char * msg)
+void show_msg(const char * msg)
 {
     char c;
 
@@ -139,7 +139,7 @@ static void detect_memory(void)
             break;
     }
 
-    show_msg("detect memory ok.\r\n");
+    show_msg("ok.\r\n");
 }
 
 
@@ -184,6 +184,7 @@ static void detect_memory(void)
  */
 static void enter_protect_mode(void)
 {
+    // <<<Enter Protect Mode>>>
     // 1. 关中断, 防止在模式切换过程中被打断
     cli();
 
@@ -213,9 +214,10 @@ static void enter_protect_mode(void)
 
     /**
      * 5. 长跳转进入到保护模式
-     * 使用长跳转，以便清空流水线，将里面的16位代码给清空
+     * 使用长跳转，以便清空原来的流水线，取消掉原16位的指令, 将里面的16位代码给清空
      * CPU使用的是流水线指令执行, 因此需要将之前的16位指令清空, 保证切换完后执行的是32位指令
      * protect_mode_entry是保护模式入口函数, 在./start.S 中定义
+     * 8 -  GDT表中 内核代码段选择因子
      */
     far_jump(8, (uint32_t)protect_mode_entry);
 }
@@ -233,6 +235,9 @@ void loader_entry(void)
 
     for(;;) {}
 }
+
+
+
 
 
 

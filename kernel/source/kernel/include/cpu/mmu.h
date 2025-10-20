@@ -25,6 +25,7 @@
 
 #pragma pack(1)
 /**
+ * <<<Page-Directory Entry 4KB>>>
  * @brief PDE(Page-Directory Entry)
  */
 typedef union _pde_t
@@ -46,6 +47,7 @@ typedef union _pde_t
 } pde_t;
 
 /**
+ * <<<Page-Table Entry 4KB>>>
  * @brief PTE(Page-Table Entry)
  */
 typedef union _pte_t

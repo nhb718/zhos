@@ -143,7 +143,11 @@ static pte_t * find_pte(pde_t * page_dir, uint32_t vaddr, int alloc)
             return (pte_t *)0;
         }
 
-        // 分配好新的页表, 需建立页目录项与页表的对应关系, 在设置好页表属性后(页表地址|存在|可读性|用户可访问)赋值给页目录项pde
+        /**
+         * 分配好新的页表, 需建立页目录项与页表的对应关系
+         * 在设置好页表属性后(页表地址|存在|可读性|用户可访问)赋值给页目录项pde
+         * 此处权限应放宽, 即: 可读写 | 用户可访问
+         */
         pde->v = pg_paddr | PDE_P | PDE_W | PDE_U;
 
         // 为物理页表绑定虚拟地址的映射, 这样下面就可以计算出虚拟地址了
@@ -174,7 +178,7 @@ static int memory_create_map(pde_t * page_dir, uint32_t vaddr, uint32_t paddr, i
     // 逐个物理页建立映射关系
     for (int i = 0; i < count; i++)
     {
-        log_printf("create map: v-0x%x p-0x%x, perm: 0x%x", vaddr, paddr, perm);
+        //log_printf("create map: v-0x%x p-0x%x, perm: 0x%x", vaddr, paddr, perm);
         // 在二级页表项中找一个空闲pte来建立与物理页的映射关系, 并将找到的页表项地址存放到一级页目录项中
         pte_t * pte = find_pte(page_dir, vaddr, 1);
         if (pte == (pte_t *)0)
@@ -183,7 +187,7 @@ static int memory_create_map(pde_t * page_dir, uint32_t vaddr, uint32_t paddr, i
             return -1;
         }
 
-        log_printf("\tpte addr: 0x%x", (uint32_t)pte);
+        //log_printf("\tpte addr: 0x%x", (uint32_t)pte);
         // 创建映射的时候, 这条pte应当是不存在的, 如果存在, 说明找到的页表有问题
         ASSERT(pte->present == 0);
 
@@ -223,6 +227,12 @@ static void create_kernel_table(void)
      */
     static memory_map_t kernel_map[] =
     {
+        /**
+         * 关于权限设置
+         * PDE的权限设置是针对PDE表项对应的1024个pte所映射的4KB物理内存
+         * PTE的权限设置只针对该pte所映射的4KB物理内存
+         * 因此在权限设置时, 将PDE权限设置宽一些, 具体特定物理页地址访问权限可根据需求对PTE进行精细设置
+         */
         //virtual start   virtual end                  physical start   permission
         // 内核栈区域(0～64KB内存区域), 此处也从0开始
         {kernel_base,     s_text,                      0,               PTE_W},
@@ -249,11 +259,10 @@ static void create_kernel_table(void)
          */
         uint32_t vstart = down2((uint32_t)map->vstart, MEM_PAGE_SIZE);
         uint32_t vend   = up2((uint32_t)map->vend, MEM_PAGE_SIZE);
-        uint32_t paddr  = down2((uint32_t)map->pstart, MEM_PAGE_SIZE);
         int page_count  = (vend - vstart) / MEM_PAGE_SIZE;
 
         // 页目录表数组首地址, 待映射的虚拟内存起始地址, 物理内存起始地址, 页数, 权限
-        memory_create_map(kernel_page_dir, vstart, (uint32_t)paddr, page_count, map->perm);
+        memory_create_map(kernel_page_dir, vstart, (uint32_t)map->pstart, page_count, map->perm);
     }
 }
 
@@ -529,6 +538,7 @@ void memory_free_page(uint32_t addr)
 }
 
 /**
+ * <<<Segmentation and Paging>>>
  * @brief 初始化内存管理子系统
  * 该函数的主要任务：
  * 1. 初始化物理内存分配器: 将所有物理内存管理起来, 在1MB内存中分配物理位图
@@ -539,11 +549,14 @@ void memory_init(boot_info_t * boot_info)
     // 位于1MB空间内, 内核代码段,数据段之后的内存块, 在链接脚本中定义
     extern uint8_t * mem_free_start;
 
-    log_printf("start memory init...");
+    //log_printf("start memory init...");
     show_mem_info(boot_info);
 
-    // 在内核数据后面放物理页位图, 该地址由内核kernel.lds文件确定128KB区域物理页位图的起始地址
-    /* first_task 初始进程的配置: 紧接着在低端1MB内, 内核数据段后的e_data开始存储, 但是运行时搬运到虚拟地址 0x80000000 处 */
+    /**
+     * 在内核数据后面放物理页位图, 该地址由内核kernel.lds文件确定128KB区域物理页位图的起始地址
+     * first_task 初始进程的配置: 紧接着在低端1MB内, 内核数据段后的e_data开始存储, 
+     * 但是运行时搬运到虚拟地址 0x80000000 处
+     */
     uint8_t * mem_bitmap_addr = (uint8_t *)&mem_free_start;
 
     // 计算1MB以上物理内存空间的空闲内存总容量，并对齐的页边界
@@ -552,12 +565,15 @@ void memory_init(boot_info_t * boot_info)
     // 物理内存开始位置=MEM_EXT_START(1MB), 4KB对齐后的总物理内存大小为 mem_up1MB_free_size
     log_printf("Free memory: 0x%x, size: 0x%x", MEM_EXT_START, mem_up1MB_free_size);
 
-    // 4GB大小需要总共4*1024*1024*1024/4096/8=128KB的位图, 因此使用低1MB的RAM空间中足够
-    // 该部分的内存紧跟在mem_free_start开始的128KB区域, 在kernel.lds文件中定义位图数组的起始地址 mem_bitmap_addr
+    /**
+     * 4GB大小需要总共4*1024*1024*1024/4096/8=128KB的位图, 因此使用低1MB的RAM空间中足够
+     * 该部分的内存紧跟在ld文件中mem_free_start开始的128KB区域, 在kernel.lds文件中定义
+     * 位图数组的起始地址 mem_bitmap_addr
+     */
     addr_alloc_init(&paddr_alloc, mem_bitmap_addr, MEM_EXT_START, mem_up1MB_free_size, MEM_PAGE_SIZE);
     mem_bitmap_addr += bitmap_byte_count(paddr_alloc.size / MEM_PAGE_SIZE);
 
-    // 到这里, mem_bitmap_addr 必须比EBDA起始地址要小, 保证128KB bitmap区域不会被覆盖
+    // 到这里, mem_bitmap_addr 必须比EBDA起始地址(=0x80000)要小, 保证128KB bitmap区域不会被覆盖
     ASSERT(mem_bitmap_addr < (uint8_t *)MEM_EBDA_START);
 
     // 重新创建内核的内存映射页表

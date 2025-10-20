@@ -97,7 +97,7 @@
 #define IRQ1_KEYBOARD        0x21 // 按键中断
 #define IRQ14_HARDDISK_PRIMARY   0x2E  // 主总线上的ATA磁盘中断
 
-#define IRQ80_SYSCALL        0x80 // system call 系统调用中断
+//#define IRQ80_SYSCALL        0x80 // system call 系统调用中断
 
 #define ERR_PAGE_P           (1 << 0)
 #define ERR_PAGE_WR          (1 << 1)
@@ -108,6 +108,7 @@
 
 
 /**
+ * <<<Exception Frame_1/2>>>
  * 中断发生时相应的栈结构，暂时为无特权级发生的情况
  */
 typedef struct _exception_frame_t
@@ -153,7 +154,7 @@ void exception_handler_machine_check(void);
 void exception_handler_smd_exception(void);
 void exception_handler_virtual_exception(void);
 
-void exception_handler_syscall_irq(void);
+//void exception_handler_syscall_irq(void);
 
 
 // PIC中断控制器8259A芯片相关的寄存器及位配置

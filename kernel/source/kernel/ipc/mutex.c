@@ -44,6 +44,7 @@ void mutex_lock(mutex_t * mutex)
     else
     {
         // 该锁已被其它任务占用, 则将当前进程扔进等待队列中
+        task_t * curr = task_current();
         task_set_block(curr);
         list_insert_last(&mutex->wait_list, &curr->wait_node);
 

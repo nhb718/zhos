@@ -8,8 +8,8 @@
 // 16位实模式代码务必加上
 .code16
 .text
-.global _start // 声明为全局符号, 其他文件可引用该符号
 .extern loader_entry // 引用的外部符号, 在其他文件中有定义
+.global _start // 声明为全局符号, 其他文件可引用该符号
 
 // 以下程序为二级引导loader程序, 它会被一级引导程序boot从磁盘第2号扇区加载到内存0x8000处并执行
 _start:
@@ -21,6 +21,7 @@ _start:
     // 然而boot 暂时没有这个能力, 因此loader开头处用汇编实现, 以便 _start 处于整个bin文件开头, 这样boot直接跳到开头就可以
     // loader_entry 在 loader_16.c 中定义, 负责完成从16位实模式切换到32位保护模式
     jmp loader_entry
+
 
 
 .code32 // 告诉编译器下面的代码都是运行在32位保护模式下的代码

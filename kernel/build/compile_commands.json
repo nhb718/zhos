@@ -1,0 +1,284 @@
+[
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/boot",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -m32 -g -g -o CMakeFiles/boot.dir/start.S.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/boot/start.S",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/boot/start.S",
+  "output": "source/boot/CMakeFiles/boot.dir/start.S.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/boot",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/boot.dir/boot.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/boot/boot.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/boot/boot.c",
+  "output": "source/boot/CMakeFiles/boot.dir/boot.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/loader",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -m32 -g -g -o CMakeFiles/loader.dir/start.S.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/loader/start.S",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/loader/start.S",
+  "output": "source/loader/CMakeFiles/loader.dir/start.S.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/loader",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/loader.dir/loader_16.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/loader/loader_16.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/loader/loader_16.c",
+  "output": "source/loader/CMakeFiles/loader.dir/loader_16.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/loader",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/loader.dir/loader_32.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/loader/loader_32.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/loader/loader_32.c",
+  "output": "source/loader/CMakeFiles/loader.dir/loader_32.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -m32 -g -g -o CMakeFiles/kernel.dir/init/start.S.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/init/start.S",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/init/start.S",
+  "output": "source/kernel/CMakeFiles/kernel.dir/init/start.S.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/core/memory.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/core/memory.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/core/memory.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/core/memory.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/core/syscall.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/core/syscall.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/core/syscall.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/core/syscall.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/core/task.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/core/task.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/core/task.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/core/task.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/cpu/cpu.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/cpu/cpu.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/cpu/cpu.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/cpu/cpu.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/cpu/irq.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/cpu/irq.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/cpu/irq.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/cpu/irq.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/dev/console.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/dev/console.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/dev/console.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/dev/console.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/dev/dev.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/dev/dev.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/dev/dev.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/dev/dev.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/dev/disk.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/dev/disk.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/dev/disk.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/dev/disk.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/dev/kbd.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/dev/kbd.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/dev/kbd.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/dev/kbd.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/dev/time.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/dev/time.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/dev/time.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/dev/time.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/dev/tty.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/dev/tty.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/dev/tty.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/dev/tty.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/fs/devfs/devfs.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/fs/devfs/devfs.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/fs/devfs/devfs.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/fs/devfs/devfs.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/fs/fatfs/fatfs.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/fs/fatfs/fatfs.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/fs/fatfs/fatfs.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/fs/fatfs/fatfs.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/fs/file.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/fs/file.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/fs/file.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/fs/file.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/fs/fs.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/fs/fs.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/fs/fs.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/fs/fs.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/init/first_task.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/init/first_task.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/init/first_task.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/init/first_task.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -m32 -g -g -o CMakeFiles/kernel.dir/init/first_task_entry.S.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/init/first_task_entry.S",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/init/first_task_entry.S",
+  "output": "source/kernel/CMakeFiles/kernel.dir/init/first_task_entry.S.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/init/init.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/init/init.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/init/init.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/init/init.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/init/lib_syscall.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/init/lib_syscall.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/init/lib_syscall.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/init/lib_syscall.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/ipc/mutex.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/ipc/mutex.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/ipc/mutex.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/ipc/mutex.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/ipc/sem.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/ipc/sem.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/ipc/sem.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/ipc/sem.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/tools/bitmap.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/tools/bitmap.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/tools/bitmap.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/tools/bitmap.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/tools/klib.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/tools/klib.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/tools/klib.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/tools/klib.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/tools/list.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/tools/list.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/tools/list.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/tools/list.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/kernel.dir/tools/log.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/tools/log.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/tools/log.c",
+  "output": "source/kernel/CMakeFiles/kernel.dir/tools/log.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/applib",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -m32 -g -g -o CMakeFiles/app.dir/crt0.S.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/crt0.S",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/crt0.S",
+  "output": "source/applib/CMakeFiles/app.dir/crt0.S.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/applib",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/app.dir/cstart.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/cstart.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/cstart.c",
+  "output": "source/applib/CMakeFiles/app.dir/cstart.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/applib",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/app.dir/lib_syscall.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/lib_syscall.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/lib_syscall.c",
+  "output": "source/applib/CMakeFiles/app.dir/lib_syscall.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/shell",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/shell/../applib -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/shell.dir/main.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/shell/main.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/shell/main.c",
+  "output": "source/shell/CMakeFiles/shell.dir/main.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/init",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/init/../applib -m32 -g -g -o CMakeFiles/init.dir/__/applib/crt0.S.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/crt0.S",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/crt0.S",
+  "output": "source/init/CMakeFiles/init.dir/__/applib/crt0.S.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/init",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/init/../applib -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/init.dir/__/applib/cstart.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/cstart.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/cstart.c",
+  "output": "source/init/CMakeFiles/init.dir/__/applib/cstart.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/init",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/init/../applib -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/init.dir/__/applib/lib_syscall.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/lib_syscall.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/lib_syscall.c",
+  "output": "source/init/CMakeFiles/init.dir/__/applib/lib_syscall.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/init",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/init/../applib -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/init.dir/main.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/init/main.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/init/main.c",
+  "output": "source/init/CMakeFiles/init.dir/main.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/loop",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/loop/../applib -m32 -g -g -o CMakeFiles/loop.dir/__/applib/crt0.S.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/crt0.S",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/crt0.S",
+  "output": "source/loop/CMakeFiles/loop.dir/__/applib/crt0.S.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/loop",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/loop/../applib -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/loop.dir/__/applib/cstart.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/cstart.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/cstart.c",
+  "output": "source/loop/CMakeFiles/loop.dir/__/applib/cstart.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/loop",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/loop/../applib -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/loop.dir/__/applib/lib_syscall.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/lib_syscall.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/lib_syscall.c",
+  "output": "source/loop/CMakeFiles/loop.dir/__/applib/lib_syscall.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/loop",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/loop/../applib -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/loop.dir/main.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/loop/main.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/loop/main.c",
+  "output": "source/loop/CMakeFiles/loop.dir/main.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/snake",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/snake/../applib -m32 -g -g -o CMakeFiles/snake.dir/__/applib/crt0.S.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/crt0.S",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/crt0.S",
+  "output": "source/snake/CMakeFiles/snake.dir/__/applib/crt0.S.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/snake",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/snake/../applib -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/snake.dir/__/applib/cstart.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/cstart.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/cstart.c",
+  "output": "source/snake/CMakeFiles/snake.dir/__/applib/cstart.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/snake",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/snake/../applib -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/snake.dir/__/applib/lib_syscall.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/lib_syscall.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/applib/lib_syscall.c",
+  "output": "source/snake/CMakeFiles/snake.dir/__/applib/lib_syscall.c.obj"
+},
+{
+  "directory": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/snake",
+  "command": "/opt/homebrew/bin/x86_64-elf-gcc  -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include -I/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/snake/../applib -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -g -o CMakeFiles/snake.dir/main.c.obj -c /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/snake/main.c",
+  "file": "/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/snake/main.c",
+  "output": "source/snake/CMakeFiles/snake.dir/main.c.obj"
+}
+]

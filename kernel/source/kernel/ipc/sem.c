@@ -8,7 +8,7 @@
 #include "cpu/irq.h"
 #include "core/task.h"
 #include "ipc/sem.h"
-#include "ipc/spinlock.h"
+//#include "ipc/spinlock.h"
 
 
 /**

@@ -47,7 +47,7 @@
 // IDT表中有三种类型的门: 中断门IDT/陷阱门Trap/系统调用门Syscall, 通过属性中type字段不同来区分
 #define GATE_TYPE_IDT       (0xE << 8)      // 32位中断门描述符, 0xE为中断门 Interrupt Gate
 #define GATE_TYPE_SYSCALL   (0xC << 8)      // 0xC为系统调用门 Task Gate
-//#define GATE_TYPE_TRAP      (0xF << 8)      // 0xF为陷阱门 Trap Gate
+#define GATE_TYPE_TRAP      (0xF << 8)      // 0xF为陷阱门 Trap Gate
 #define GATE_P_PRESENT      (1 << 15)       // 是否存在, present =1, gate存在的
 #define GATE_DPL0           (0 << 13)       // 特权级0，最高特权级, 内核态
 #define GATE_DPL3           (3 << 13)       // 特权级3，最低权限, 用户态
@@ -67,6 +67,7 @@
 
 
 /**
+ * <<<GDT Segment Descriptor>>>
  * GDT - Global Descriptor Table
  * TSS - Task State Segment
  * GDT表中存储的数据如下:
@@ -74,6 +75,7 @@
  * TSS desc  -->  Task State Segment 任务状态段
  * Seg desc
  * TSS desc
+ *
  * LDT desc  -->  Local Descriptor Table 局部描述符表
  *
  * Seg desc指向 Code, Data or Stack Segment
@@ -110,6 +112,7 @@ typedef struct _segment_desc_t
 } segment_desc_t;
 
 /*
+ * <<<IDT Gate Descriptor>>>
  * IDT段描述符结构体
  */
 typedef struct _gate_desc_t
@@ -141,8 +144,8 @@ typedef struct _tss_t
     uint32_t pre_link; // 前一个任务链接, 此项目暂未用到
     // ss0,esp0, ss1,esp1, ss2,esp2 保护模式下特权级程序使用的栈相关寄存器, 我们只用到ss0, 对应特权级0
     uint32_t esp0, ss0, esp1, ss1, esp2, ss2; 
-    uint32_t cr3; // 保存虚拟内存页目录项首地址
-    uint32_t eip, eflags; // CPU运行状态寄存器
+    uint32_t cr3; // 保存虚拟内存页目录首地址
+    uint32_t eip, eflags; // 当前任务执行的指令地址, CPU运行状态寄存器
     uint32_t eax, ecx, edx, ebx, esp, ebp, esi, edi; // 通用寄存器
     uint32_t es, cs, ss, ds, fs, gs; // 段寄存器
     uint32_t ldt; // LDT Segment Selector, 此项目暂未用到
@@ -153,7 +156,7 @@ typedef struct _tss_t
 
 
 void cpu_init(void);
-void segment_desc_set(uint16_t selector, uint32_t base, uint32_t limit, uint16_t attr);
+void segment_desc_set(int selector, uint32_t base, uint32_t limit, uint16_t attr);
 void gate_desc_set(gate_desc_t * desc, uint16_t selector, uint32_t offset, uint16_t attr);
 int gdt_alloc_desc(void);
 void gdt_free_sel(int sel);

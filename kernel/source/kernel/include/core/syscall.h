@@ -62,7 +62,7 @@ typedef struct _syscall_frame_t
 void exception_handler_syscall(void);
 
 // syscall处理, 在 start.S 中断处理汇编代码中进行统一处理
-void exception_handler_syscall_irq(void);
+//void exception_handler_syscall_irq(void);
 
 
 #endif //OS_SYSCALL_H

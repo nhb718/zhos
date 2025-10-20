@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/include/os_cfg.h
+
+/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/init/start.S
+os_cfg.h
+/Users/nihaibing/Documents/linux/myos/zhos/kernel/source/kernel/init/os_cfg.h
+

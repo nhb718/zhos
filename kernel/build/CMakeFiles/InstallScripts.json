@@ -1,0 +1,15 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/cmake_install.cmake",
+		"/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/boot/cmake_install.cmake",
+		"/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/loader/cmake_install.cmake",
+		"/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/kernel/cmake_install.cmake",
+		"/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/applib/cmake_install.cmake",
+		"/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/shell/cmake_install.cmake",
+		"/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/init/cmake_install.cmake",
+		"/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/loop/cmake_install.cmake",
+		"/Users/nihaibing/Documents/linux/myos/zhos/kernel/build/source/snake/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

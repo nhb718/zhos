@@ -1,0 +1,31 @@
+source/init/CMakeFiles/init.dir/main.c.obj: \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/source/init/main.c \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/stdio.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/_ansi.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/newlib.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/_newlib_version.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/sys/config.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/machine/ieeefp.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/sys/features.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/sys/cdefs.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/machine/_default_types.h \
+ /opt/homebrew/Cellar/x86_64-elf-gcc/15.1.0/lib/gcc/x86_64-elf/15.1.0/include/stddef.h \
+ /opt/homebrew/Cellar/x86_64-elf-gcc/15.1.0/lib/gcc/x86_64-elf/15.1.0/include/stdarg.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/sys/reent.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/_ansi.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/sys/_types.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/machine/_types.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/sys/lock.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/sys/types.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/sys/_stdint.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/machine/endian.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/machine/_endian.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/sys/select.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/sys/_sigset.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/sys/_timeval.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/sys/timespec.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/sys/_timespec.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/sys/_pthreadtypes.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/sys/sched.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/machine/types.h \
+ /Users/nihaibing/Documents/linux/myos/zhos/kernel/../newlib/i686-elf/include/sys/stdio.h

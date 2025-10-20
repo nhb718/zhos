@@ -29,14 +29,6 @@ void bitmap_init(bitmap_t * bitmap, uint8_t * bits, int count, int init_bit)
     kernel_memset(bitmap->bits, init_bit ? 0xFF: 0, bytes);
 }
 
-/**
- * @brief 获取指定位的状态
- */
-int bitmap_get_bit(bitmap_t * bitmap, int index)
-{
-    // index=17, 17/8=2, 17%8=1, 即第2个字节的第1个bit位
-    return (bitmap->bits[index / 8] & (1 << (index % 8))) ? 1 : 0;
-}
 
 /**
  * @brief 连续设置N个位
@@ -55,6 +47,15 @@ void bitmap_set_bit(bitmap_t * bitmap, int index, int count, int bit)
         }
     }
 } 
+
+/**
+ * @brief 获取指定位的状态
+ */
+int bitmap_get_bit(bitmap_t * bitmap, int index)
+{
+    // index=17, 17/8=2, 17%8=1, 即第2个字节的第1个bit位
+    return (bitmap->bits[index / 8] & (1 << (index % 8))) ? 1 : 0;
+}
 
 /**
  * @brief 检查指定位是否置1

@@ -40,7 +40,7 @@ static int tss_init(task_t * task, int flag, uint32_t entry, uint32_t esp)
 
     /**
      * tss_sel  TSS段选择因子, 在GDT表中找到的空闲项
-     * &task->tss  段的基地址
+     * &task->tss  TSS段的基地址
      * sizeof(tss_t)  段长度
      * SEG_P_PRESENT | SEG_DPL0 | SEG_TYPE_TSS  段属性设置: 段存在 | 特权0内核态 | 段类型为TSS
      */
@@ -61,20 +61,23 @@ static int tss_init(task_t * task, int flag, uint32_t entry, uint32_t esp)
     int code_sel, data_sel;
     if (flag & TASK_FLAG_SYSTEM) // 创建内核进程
     {
-        code_sel = KERNEL_SELECTOR_CS | SEG_CPL0;
-        data_sel = KERNEL_SELECTOR_DS | SEG_CPL0;
+        //code_sel = KERNEL_SELECTOR_CS | SEG_CPL0;
+        //data_sel = KERNEL_SELECTOR_DS | SEG_CPL0;
+        code_sel = KERNEL_SELECTOR_CS;
+        data_sel = KERNEL_SELECTOR_DS;
     }
     else // 创建应用进程
     {
-        // 注意加了CPL3, 不然将产生段保护错误
-        code_sel = task_manager.app_code_sel | SEG_CPL3;
-        data_sel = task_manager.app_data_sel | SEG_CPL3;
+        // 注意加了RPL3, 不然将产生段保护错误
+        code_sel = task_manager.app_code_sel | SEG_RPL3;
+        data_sel = task_manager.app_data_sel | SEG_RPL3;
     }
 
     task->tss.eip = entry;
     task->tss.esp = esp ? esp : kernel_stack + MEM_PAGE_SIZE; // 未指定栈则默认用内核栈，即运行在特权级0的进程
     task->tss.esp0 = kernel_stack + MEM_PAGE_SIZE; // esp0为特权级0的内核进程栈空间, 因此需设置为内核栈, 而栈是自顶向下的
     task->tss.ss0 = KERNEL_SELECTOR_DS; // 当进程发生异常时需进入内核态, 此时需设置ss0的特权级为0
+    task->tss.eip = entry;
     task->tss.eflags = EFLAGS_DEFAULT| EFLAGS_IF; // TSS恢复后, 若IF==0, 这会导致全局中断关掉, 所有的中断都不能响应
     // 代码段使用上面赋值的结果 code_sel
     task->tss.cs = code_sel;
@@ -261,12 +264,13 @@ static void idle_task_entry(void)
 {
     for (;;)
     {
-        hlt(); // CPU进入低功耗运行状态
+        hlt(); // CPU暂停运行, 进入低功耗运行状态
     }
 }
 
 /**
  * @brief 任务管理模块初始化
+ * <<<TSS Descriptor>>>
  */
 void task_manager_init(void)
 {
@@ -331,7 +335,7 @@ void task_set_block(task_t * task)
  */
 static task_t * task_next_run(void)
 {
-    // 如果就绪队列中没有任务, 则运行内核提供的默认空闲任务
+    // 如果就绪队列中没有任务, 则运行内核提供的默认空闲任务, 空闲进程idle不做什么, 只是将CPU挂起halt
     if (list_count(&task_manager.ready_list) == 0)
     {
         return &task_manager.idle_task;
@@ -449,6 +453,7 @@ int sys_yield(void)
         // 由于某些原因运行后阻塞或删除，再回到这里切换将发生问题
         task_dispatch();
     }
+
     irq_leave_protection(state);
 
     return 0;
@@ -461,18 +466,20 @@ int sys_yield(void)
  */
 void task_dispatch(void)
 {
-    irq_state_t state = irq_enter_protection();
+    //irq_state_t state = irq_enter_protection();
+
     task_t * to = task_next_run();
     // to任务与当前任务不一样才用切换
     if (to != task_manager.curr_task)
     {
         // 组织好from, to任务
         task_t * from = task_current(); // from: 当前任务
-        task_manager.curr_task = to; // to: 就绪队列第一个任务, 同时将当前任务设置为to
-        to->state = TASK_RUNNING;
+        task_manager.curr_task = to; // to: 就绪队列第一个任务, 同时将当前任务设置为 to
+        to->state = TASK_RUNNING; // 设置当前任务状态为运行态
         task_switch_from_to(from, to);
     }
-    irq_leave_protection(state);
+
+    //irq_leave_protection(state);
 }
 
 /**

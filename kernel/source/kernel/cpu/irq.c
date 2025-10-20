@@ -73,7 +73,7 @@ static void do_default_handler(exception_frame_t * frame, const char * message)
     {
         for (;;)
         {
-            hlt(); // CPU进入停止运行状态
+            hlt(); // CPU进入停止运行状态, 该任务让出CPU, 减少当前任务的CPU占用率
         }
     }
 }
@@ -283,7 +283,7 @@ void do_handler_virtual_exception(exception_frame_t * frame)
  * ../8259A.pdf        
  *   
  * 相关书籍:
- * 《Linux内核完全剖析  第180页》
+ * 《Linux内核完全剖析0.12  第180页》
  */
 static void init_pic(void)
 {
@@ -333,7 +333,7 @@ void irq_init(void)
     for (uint32_t i = 0; i < IDT_TABLE_NR; i++)
     {
         // 设置所有中断/异常的默认处理函数
-        gate_desc_set(idt_table + i, KERNEL_SELECTOR_CS, (uint32_t) exception_handler_unknown,
+        gate_desc_set(idt_table + i, KERNEL_SELECTOR_CS, (uint32_t)exception_handler_unknown,
                       GATE_P_PRESENT | GATE_DPL0 | GATE_TYPE_IDT);
     }
 
@@ -360,8 +360,8 @@ void irq_init(void)
 
     //irq_install(IRQ80_SYSCALL, exception_handler_syscall_irq); // 该接口设置的权限时DPL0
     // 此处需要设置int $0x80 的DPL3权限, 以允许应用层调用系统调用接口
-    gate_desc_set(idt_table + IRQ80_SYSCALL, KERNEL_SELECTOR_CS, (uint32_t)exception_handler_syscall_irq,
-                  GATE_P_PRESENT | GATE_DPL3 | GATE_TYPE_IDT);
+    //gate_desc_set(idt_table + IRQ80_SYSCALL, KERNEL_SELECTOR_CS, (uint32_t)exception_handler_syscall_irq,
+    //              GATE_P_PRESENT | GATE_DPL3 | GATE_TYPE_IDT);
 
     // 加载IDT表, 使IDTR寄存器指向IDT表起始地址
     lidt((uint32_t)idt_table, sizeof(idt_table));
@@ -382,6 +382,7 @@ int irq_install(int irq_num, irq_handler_t handler)
     }
 
     /**
+     * <<<IDTR Register>>>
      * idt_table + irq_num -  idt_table基地址 + 中断号
      * KERNEL_SELECTOR_CS - 内核代码段起始地址
      * handler - 对应的中断处理程序
@@ -457,6 +458,7 @@ void irq_enable_global(void)
 irq_state_t irq_enter_protection(void)
 {
     irq_state_t state = read_eflags(); // 读出CPU eflags寄存器状态信息
+    // <<<Eflags Register>>>
     irq_disable_global(); // 关中断, 其实是修改了eflags寄存器的[9] bit位 - Interrupt Enable Flag
     return state;
 }

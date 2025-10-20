@@ -5,38 +5,39 @@
  * 功能描述: 内核启动程序, 负责解析引导程序传递的 boot_info 参数, 系统的初始化(包括硬件组件和各内核模块)
  */
 
+// GCC支持在汇编语言中引用C语言的头文件, 前提条件: 将汇编文件的.s改为大写的.S
 #include "os_cfg.h"
 
 
 // 不必加.code32, 保护模式下默认就是32位
 .text
-.global _start_kernel
+.global _start
 .extern kernel_init
 .extern init_main
 
 # void start(boot_info_t * boot_info)
 # 此处需将boot_info参数传递给call kernel_init, 即需要先将boot_info参数压栈, 再调用kernel_init
-_start_kernel:
-    // 汇编指令语法格式: mov source, dest
+_start:
+    // inter X86汇编指令语法格式: mov source, dest
     # 第一种方法, 传统获取入参方式
     # 1) 将老的栈底ebp压栈
     # 2) 将当前esp赋值给ebp作为新的栈底
     # 3) 取调用者传入的参数, 压栈顺序: 入参(从后往前压栈), 返回者(调用点下一个指令地址), 刚压栈的老ebp
     # 因此需要将ebp+8后赋值给eax
     # push %ebp           // 保存ebp, 入栈
-    # mov %esp, %ebp      // 将esp赋值给ebp
-    # mov 0x8(%ebp), %eax // 取出boot_info参数(ebp后面有返回值+参数, 因此ebp需要+8), 并保存到eax寄存器中
+    # mov %esp, %ebp      // 将esp赋值给ebp, 此时ebp指向栈顶
+    # mov 0x8(%ebp), %eax // 取出boot_info参数(需跳过ebp地址+函数返回值, 才能取到参数, 因此ebp需要+8), 保存到eax寄存器中
     # push %eax           // 保存eax, 入栈
 
     # 第二种方法, 因kernel拉起来后不会再返回, 所以此处可省略ebp压栈, 返回地址压栈, 直接通过esp+4后赋值给eax
-    # mov 4(%esp), %eax   // 取出boot_info参数(esp后面有返回值, 因此esp需要+4), 并保存到eax寄存器中
-    # push %eax           // 保存eax, 入栈
+    # mov 4(%esp), %eax   // 取出boot_info参数(esp后面有函数返回值, 因此esp需要+4), 并保存到eax寄存器中
+    # push %eax           // 调用kernel_init前, 将eax(存放boot_info_t * 指针地址)作为入参保存到栈中
 
-    # 第三种方法, 直接将esp+4指向的boot_info参数入栈, 因为拉起内核后不会再返回了, 无需保存ebp栈底指针
+    # 第三种方法, 直接将esp+4(只需跳过函数返回值)指向的boot_info参数入栈, 因为拉起内核后不会再返回了, 无需保存ebp栈底指针
     push 4(%esp)
 
     # kernel_init(boot_info), 作为内核初始化函数入口, 该函数在 init.c 中实现
-    // 调用void kernel(boot_info_t * boot_info)运行内核, 同时传入boot_info硬件参数信息
+    // 调用void kernel_init(boot_info_t * boot_info)运行内核, 同时传入boot_info硬件参数信息
     call kernel_init  // call指令调用完成后, 还会返回
 
     // 重新加载GDT, 指定的段选择因子会被加载到CS寄存器中
@@ -61,6 +62,14 @@ gdt_reload:
 
 
 
+
+
+
+
+// <<<Interrupt Sequence>>>
+// <<<Interrupt Registers>>>
+// <<<Interrupt Procedure Call>>>
+// <<<x86 Registers>>>
 // 中断发生时, 会自动切换到特权级0对应的栈中去执行
 // 并且只保存ss,esp,cs,eip,flags寄存器
 // 所以需要在中断中自行保存其它寄存器
@@ -68,6 +77,7 @@ gdt_reload:
 // 下面的代码基本上是对上面代码的重复, 只不过换用了宏来处理
 // 注意确定没写错, 可对照反汇编来看. 另外, 下面的代码没有办法调试, 原因未知
 .text
+// 汇编中通过.macro定义宏
 .macro exception_handler name num with_error_code
 .extern do_handler_\name
 .global exception_handler_\name
@@ -82,6 +92,7 @@ exception_handler_\name:
     push $\num
 
     // 一、保存 CPU 寄存器，即中断发生时的程序运行的上下文
+    // 使用命令: -exec x /20x 0x12e30
     # 需保存中断上下文, 有以下三种类型
     # 1. 硬件会自动压栈的寄存器: eflags, cs, eip, error code错误码(可选)
     # 2. X86 pushal指令会自动压栈通用寄存器: eax, ecx, edx, ebx, esp, ebp, esi, edi
@@ -97,10 +108,10 @@ exception_handler_\name:
     // 在调用函数前将当前esp栈顶指针压栈, 方便在do_default_handler打印栈中整个上下文的所有寄存器信息
     push %esp
     call do_handler_\name
-    add $(1*4), %esp    // 丢掉esp
+    add $(1*4), %esp    // pop %esp, 跟保存时保持一致
 
     // 三、恢复 CPU 寄存器, 即恢复中断时程序运行的上下文, 使程序能继续运行
-    # 恢复中断上下文, 保存时逆序即可
+    # 恢复中断上下文, 与保存时逆序即可
     # 1. 手动出栈的寄存器
     pop %gs
     pop %fs
@@ -112,13 +123,15 @@ exception_handler_\name:
     # 4. 返回地址, call指令自动压入
     # pop $\num
     # pop err_code
-    // 跳过压入的异常号和错误码
+    // 跳过压入的异常号(inr_num)和错误码(error_code)
     add $(2*4), %esp
 
-    iret
-.endm
+    iret // 从中断中返回必须用iret指令, 因此中断服务程序不可用C语言实现(C语言是ret返回指令)
+.endm // 汇编宏定义结束部分
 
 
+
+// <<<Interrupts_1/2>>>
 # 使用上述宏定义来初始化中断向量表中的异常处理函数
 exception_handler unknown, -1, 0    # 未知异常
 exception_handler divider, 0, 0     # 除0异常
@@ -146,9 +159,13 @@ exception_handler timer, 0x20, 0      # 超时定时器
 exception_handler kbd, 0x21, 0
 exception_handler ide_primary, 0x2E, 0
 
-exception_handler syscall_irq, 0x80, 0 # 系统调用中断
+//exception_handler syscall_irq, 0x80, 0 # 系统调用中断
 
 
+
+
+// <<<Task State Segment>>>
+// <<<TSS Registers Category>>>
 // eax, ecx, edx, eflags 切换时无需保存
 // ebx, esi, edi, ebp 需要由被调用者保存和恢复 !!!
 // cs/ds/es/fs/gs/ss 切换时无需保存
@@ -158,16 +175,18 @@ exception_handler syscall_irq, 0x80, 0 # 系统调用中断
 .text
 .global simple_switch
 simple_switch:
-    movl 4(%esp), %eax   // 取传入参数from->stack, 保存from->stack到 eax 寄存器
-    movl 8(%esp), %edx   // 取传入参数to->stack, 保存to->stack到 edx 寄存器
+    movl 4(%esp), %eax   // 取传入参数from->stack, 保存前一个任务的from->stack到 eax 寄存器
+    movl 8(%esp), %edx   // 取传入参数to->stack, 保存下一个任务的to->stack到 edx 寄存器
 
-    // 保存前一任务的状态寄存器
+    // 保存前一任务的状态寄存器- 保存到函数栈中, 等恢复时将之前栈中保存的寄存器弹出
     push %ebp
     push %ebx
     push %esi
     push %edi
+    // eip寄存器已自动保存(即函数返回地址=eip)
+    // esp 保存到task的stack中, 在task_t中添加 uint32_t * stack 用于保存esp
 
-    // 切换栈, 将之前保存在edx寄存器中 to->stack 传给 esp
+    // 实现栈的切换, 保存前一个任务的esp寄存器到from->stack栈中, 并加载下一个任务的to->stack到edx寄存器
     mov %esp, (%eax)     // from->stack = esp
     mov %edx, %esp       // esp = to->stack
 
@@ -176,7 +195,10 @@ simple_switch:
     pop %esi
     pop %ebx
     pop %ebp
-    ret
+
+    ret // 普通函数 ret指令即可返回
+
+
 
 .global exception_handler_syscall
 .extern do_handler_syscall
@@ -201,6 +223,7 @@ exception_handler_syscall:
     mov %eax, %gs
 
     // 调用处理函数
+    // <<<Function Call Stack>>>
     mov %esp, %eax
     push %eax
     # 4. 返回地址, call指令自动压入

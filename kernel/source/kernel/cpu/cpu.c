@@ -19,12 +19,12 @@ static mutex_t mutex;
 
 /**
  * 设置段描述符
- * uint16_t selector  16位段选择因子, 即GDT表项在整个GDT表中偏移量, 取值范围[1,255] 因为其中第0个表项是CPU保留项
+ * int selector  16位段选择因子, 即GDT表项在整个GDT表中偏移量, 取值范围[1,255] 因为其中第0个表项是CPU保留项
  * uint32_t base      GDT表项对应段的基地址
  * uint32_t limit     段的最大地址范围
  * uint16_t attr      段描述符的属性
  */
-void segment_desc_set(uint16_t selector, uint32_t base, uint32_t limit, uint16_t attr)
+void segment_desc_set(int selector, uint32_t base, uint32_t limit, uint16_t attr)
 {
     /**
      * selector是段选择因子索引号, 每个段描述符长度是8字节
@@ -39,10 +39,10 @@ void segment_desc_set(uint16_t selector, uint32_t base, uint32_t limit, uint16_t
         limit /= 0x1000; // limit以4KB为单位
     }
 
-    desc->limit15_0   = limit & 0xffff;
-    desc->base15_0    = base & 0xffff;
-    desc->base23_16   = (base >> 16) & 0xff;
-    desc->base31_24   = (base >> 24) & 0xff;
+    desc->limit15_0   = limit & 0xFFFF;
+    desc->base15_0    = base & 0xFFFF;
+    desc->base23_16   = (base >> 16) & 0xFF;
+    desc->base31_24   = (base >> 24) & 0xFF;
     desc->attr        = attr | (((limit >> 16) & 0xf) << 8);
 }
 
@@ -74,7 +74,7 @@ int gdt_alloc_desc(void)
     int i;
 
     mutex_lock(&mutex);
-    // 跳过第0项, 该项为CPU保留
+    // 跳过第0项, 第0项为CPU保留项
     for (i = 1; i < GDT_TABLE_SIZE; i++)
     {
         segment_desc_t * desc = gdt_table + i;
@@ -107,16 +107,16 @@ static void init_gdt(void)
         segment_desc_set(i << 3, 0, 0, 0);
     }
 
+    // 设置数据段
+    segment_desc_set(KERNEL_SELECTOR_DS, 0x00000000, 0xFFFFFFFF,
+                     SEG_P_PRESENT | SEG_DPL0 | SEG_S_NORMAL | SEG_TYPE_DATA
+                     | SEG_TYPE_RW | SEG_D | SEG_G);
+
     /**
      * 设置代码段, 只能用非一致代码段, 以便通过调用门更改当前任务的CPL执行关键的资源访问操作
      */
     segment_desc_set(KERNEL_SELECTOR_CS, 0x00000000, 0xFFFFFFFF,
                      SEG_P_PRESENT | SEG_DPL0 | SEG_S_NORMAL | SEG_TYPE_CODE
-                     | SEG_TYPE_RW | SEG_D | SEG_G);
-
-    // 设置数据段
-    segment_desc_set(KERNEL_SELECTOR_DS, 0x00000000, 0xFFFFFFFF,
-                     SEG_P_PRESENT | SEG_DPL0 | SEG_S_NORMAL | SEG_TYPE_DATA
                      | SEG_TYPE_RW | SEG_D | SEG_G);
 
     // 设置系统调用门, 此接口用于提供给应用程序的API, 因此设为DPL3

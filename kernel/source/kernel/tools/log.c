@@ -56,7 +56,7 @@ void log_init(void)
  */
 void log_printf(const char * fmt, ...)
 {
-    char str_buf[256] = {0};
+    char str_buf[128];
     va_list args;
 
     kernel_memset(str_buf, '\0', sizeof(str_buf));

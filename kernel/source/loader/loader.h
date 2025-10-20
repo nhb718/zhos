@@ -16,7 +16,7 @@
 extern boot_info_t boot_info; // 启动参数信息, boot在加载loader程序时传入
 
 // 保护模式入口函数, 在start.S中定义
-extern void protect_mode_entry(void);
+void protect_mode_entry(void);
 
 
 // 内存检测信息结构
@@ -31,7 +31,8 @@ typedef struct SMAP_entry
 }__attribute__((packed)) SMAP_entry_t;
 
 
-void loader_entry(void);
+//void show_msg(const char * msg);
+//void loader_entry(void);
 
 
 #endif // LOADER_H

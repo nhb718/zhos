@@ -1,0 +1,2 @@
+/opt/homebrew/bin/x86_64-elf-ar qc libapp.a CMakeFiles/app.dir/crt0.S.obj CMakeFiles/app.dir/cstart.c.obj CMakeFiles/app.dir/lib_syscall.c.obj
+/opt/homebrew/bin/x86_64-elf-ranlib libapp.a

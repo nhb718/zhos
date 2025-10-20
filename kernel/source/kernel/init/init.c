@@ -32,7 +32,7 @@ static boot_info_t * init_boot_info;        // 启动信息
  * 1) GDTR 寄存器保存GDT表的基地址
  *    GDT表中保存进程的任务段(代码段, 数据段)+TSS段64位描述符, GDT表一共256项, 前4项留给内核, 后252项给用户进程
  *    一个进程有任务段+TSS段, 因此最多可保存126个进程
- *    TR(Task Register) 寄存器保存当前正在运行任务current的任务段+TSS段的首地址
+ *    TR(<<<Task Register>>>) 寄存器保存当前正在运行任务current的任务段+TSS段的首地址
  *    每个TSS段64位描述符指向的是task_struct进程结构体中的tss_t首地址
  *
  * 2) LDTR寄存器保存LDT表的基地址
@@ -52,6 +52,7 @@ static boot_info_t * init_boot_info;        // 启动信息
  */
 
 /**
+ * <<<IA32 System Architecture>>>
  * 内核入口函数
  * boot_info boot程序向内核传递启动信息, 包括硬件参数等
  */
@@ -166,7 +167,7 @@ void init_main(void)
  * 模块名       磁盘中的扇区     内存中的地址        大小
  * boot         0              0x7C00        1个扇区=512字节
  * loader       1-64           0x8000        64个扇区=32KB
- * kernel       无             0x10000        大小??
+ * kernel       无             0x10000        大小256KB
  * kernel(ELF) 100-599         0x100000      500个扇区=250KB
  */
 
@@ -187,6 +188,11 @@ void init_main(void)
  * 2) 通过CR3寄存器找到GDT表基地址
  * 3) 通过Index>>3找到 全局gdt_table 表中对应的段描述符 Segment Descriptor
  * 4) 通过解析段描述符中base地址 + 32位offset偏移量 可求得线性地址 Linear Address
+ *
+ * 1. 将线性地址空间转变成多个段segments
+ * 2. 每个段带有相关的保护机制
+ * 3. 有多种类型的段: 数据段, 代码段, 栈段, 门, tss
+ * 4. 使用的地址为逻辑地址, 即段选择因子selector + 偏移offset
  */
 
 

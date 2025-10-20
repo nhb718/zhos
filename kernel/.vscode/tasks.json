@@ -14,7 +14,7 @@
                 "command": "bash ${workspaceRoot}/script/img-write-linux.sh"
             },
             "options": {
-                "cwd": "${workspaceRoot}/../image/"
+                "cwd": "${workspaceRoot}/../../image/"
             }
         },
         {
@@ -28,9 +28,8 @@
                 "command": "bash ${workspaceRoot}/script/qemu-debug-linux.sh"
             },
             "options": {
-                "cwd": "${workspaceRoot}/../image/"
-            },
-            "problemMatcher": []
+                "cwd": "${workspaceRoot}/../../image/"
+            }
         },
         {
             "label": "调试准备",
@@ -38,7 +37,8 @@
             "dependsOn": [
                 "写映像文件",
                 "启动qemu"
-            ]
+            ],
+            "problemMatcher": []
         }
     ]
 }

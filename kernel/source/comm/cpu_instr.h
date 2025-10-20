@@ -186,7 +186,7 @@ static inline void write_eflags(uint32_t eflags)
     __asm__ __volatile__("pushl %%eax\n\tpopfl"::"a"(eflags));
 }
 
-
+#if 0
 static inline void save_flags_cli(uint32_t * flags)
 {
      __asm__ __volatile__(
@@ -209,5 +209,6 @@ static inline void restore_flags_sti(uint32_t * flags)
               : "memory"
               );
 }
+#endif
 
 #endif

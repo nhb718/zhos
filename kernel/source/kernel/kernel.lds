@@ -13,7 +13,7 @@ SECTIONS
     PROVIDE(kernel_base = 0x0);
 
     /* 指定程序的起始地址 0x10000 = 64KB */
-    . = 0x0010000;
+    . = 0x00010000;
 
     . = ALIGN(4096);
     PROVIDE(s_text = .);
@@ -56,6 +56,10 @@ SECTIONS
     }
     PROVIDE(e_first_task = LOADADDR(.first_task) + SIZEOF(.first_task));
 
-    /* mem_free_start 开始的这块内存区域 存放内核内存管理的bitmap位图映射表 */
+    /**
+     * mem_free_start 开始的这块内存区域 存放内核内存管理的bitmap位图映射表
+     * 在链接文件中用 PROVIDE 修饰后的符号就可以在C文件中引用, 方式如下:
+     * uint8_t * mem_bitmap_addr = (uint8_t *)&mem_free_start;
+     */
     PROVIDE(mem_free_start = e_first_task);
 }

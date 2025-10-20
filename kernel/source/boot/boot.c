@@ -21,9 +21,9 @@ __asm__(".code16gcc");
  */
 void boot_entry(void)
 {
-    // ((void (*)(void))LOADER_START_ADDR)();
-    typedef void (* loader_func)(void);
-    loader_func func = (loader_func)LOADER_START_ADDR;
-    func();
+    ((void (*)(void))LOADER_START_ADDR)();
+    //typedef void (* loader_func)(void);
+    //loader_func func = (loader_func)LOADER_START_ADDR;
+    //func();
 }
 

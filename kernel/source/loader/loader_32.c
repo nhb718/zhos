@@ -66,7 +66,7 @@
  * uint32_t sector_count:  读取的扇区数
  * uint8_t * buf:  读取的image加载到内存中的起始地址
  */
-static void read_disk(uint32_t sector, uint32_t sector_count, uint8_t * buf)
+static void read_disk(int sector, int sector_count, uint8_t * buf)
 {
     /**
      * LBA寄存器一览
@@ -228,6 +228,7 @@ static void enable_page_mode(void)
         [0] = PDE_P | PDE_PS | PDE_W | 0,      // PDE_PS = 1 - Page Size = 1, 开启4MB的页
     };
 
+    //设置CR(<<<Control Register>>>)寄存器开启分页模式
     // 设置CR4寄存器, 先读取CR4寄存器的值; 再将该值或PSE, 以便启用4M的页, 而不是4KB
     uint32_t cr4 = read_cr4();
     write_cr4(cr4 | CR4_PSE);
@@ -236,8 +237,9 @@ static void enable_page_mode(void)
     write_cr3((uint32_t)page_dir);
 
     // 开启分页机制
-    uint32_t cr0 = read_cr0();
-    write_cr0(cr0 | CR0_PG);
+    //uint32_t cr0 = read_cr0();
+    //write_cr0(cr0 | CR0_PG);
+	write_cr0(read_cr0() | CR0_PG);
 }
 
 /**
@@ -263,6 +265,7 @@ void load_kernel(void)
     // 这里的内核image没有进行压缩, 因此无需解压的操作
 
     /**
+     * <<<ELF Format>>>
      * 解析ELF文件格式, 把内核image中的指令段、数据段、BSS段等, 根据ELF中信息和要求放入相应的物理内存处, 最后返回指令段的入口地址
      *
      * 将ELF文件从磁盘上 "临时" 先读到 SYS_KERNEL_LOAD_ADDR =1MB内存处, 再进行解析
@@ -283,14 +286,14 @@ void load_kernel(void)
      *
      * 同时, 需将 boot_info_t * boot_info 硬件参数信息传递给内核, 有两种方式
      * 1) loader将硬件参数信息写入内存中某个固定地址, 当kernel启动后从该固定地址中取出数据并解析
-     *    缺点: 需要事先约定好, 且当后续存储规划发生变化时, 需要同时调整
+     *    缺点: 需要事先约定好固定的内存地址, 且当后续存储规划发生变化时, 需要同时调整
      * 2) 将硬件参数信息作为函数入参传入, (void (*)(boot_info_t *))kernel_entry_addr(&boot_info)
      *    优点: 不必考虑内存位置, 但需要了解一些函数调用时参数传递的知识
      */
-    typedef void (*func_t)(boot_info_t *);
-    func_t kernel_entry_addr = (func_t)kernel_entry;
-    kernel_entry_addr(&boot_info);
-    //((void (*)(boot_info_t *))kernel_entry)(&boot_info);
+    //typedef void (*func_t)(boot_info_t *);
+    //func_t kernel_entry_addr = (func_t)kernel_entry;
+    //kernel_entry_addr(&boot_info);
+    ((void (*)(boot_info_t *))kernel_entry)(&boot_info);
 
     for (;;) {} // 系统本不该跑到这里来!!!
 }

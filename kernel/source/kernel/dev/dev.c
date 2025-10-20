@@ -57,7 +57,7 @@ int dev_open(int major, int minor, void * data)
         device_t * dev = dev_tbl + i;
         if (dev->open_count == 0)
         {
-            // 纪录空闲值
+            // 记录空闲值
             free_dev = dev;
         }
         else if ((dev->desc->major == major) && (dev->minor == minor))
